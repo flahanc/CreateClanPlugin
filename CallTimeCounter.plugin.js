@@ -1,7 +1,7 @@
 /**
  * @name CreateClanPlugin
  * @source https://github.com/flahanc/CreateClanPlugin
- * @description Displays a button to create a clan when you click on your own avatar.
+ * @description Displays a button to create a clan next to the Add Friend button.
  * @updateUrl https://raw.githubusercontent.com/flahanc/CreateClanPlugin/refs/heads/main/CallTimeCounter.plugin.js
  * @website https://github.com/flahanc/CreateClanPlugin
  * @version 1.0.0
@@ -16,7 +16,7 @@ const config = {
             }
         ],
         version: "1.0.0",
-        description: "Displays a button to create a clan when you click on your own avatar.",
+        description: "Displays a button to create a clan next to the Add Friend button.",
         github_raw: "https://raw.githubusercontent.com/flahanc/CreateClanPlugin/refs/heads/main/CallTimeCounter.plugin.js",
     },
     defaultConfig: []
@@ -56,7 +56,18 @@ module.exports = !global.ZeresPluginLibrary ? class {
         };
 
         render() {
-            return React.createElement("button", { onClick: this.handleClick, style: { margin: "5px" } }, "Создать клан");
+            return React.createElement("button", { 
+                onClick: this.handleClick, 
+                style: { 
+                    margin: "5px", 
+                    backgroundColor: "#7289da", 
+                    color: "#ffffff", 
+                    border: "none", 
+                    borderRadius: "5px", 
+                    padding: "5px 10px", 
+                    cursor: "pointer" 
+                } 
+            }, "Создать клан");
         }
     }
 
@@ -76,19 +87,21 @@ module.exports = !global.ZeresPluginLibrary ? class {
         patch() {
             const MemberList = WebpackModules.getByProps("getMembers");
             const Avatar = WebpackModules.getByProps("Avatar");
+            const AddFriendButton = WebpackModules.getByProps("AddFriendButton"); // Ensure you're getting the right button
 
             Patcher.after(MemberList, "getMembers", (_, __, ret) => {
                 const members = ret || [];
-                const currentUserId = UserStore.getCurrentUser ().id; // Corrected variable name
+                const currentUserId = UserStore.getCurrentUser ().id;
 
                 return members.map(member => {
-                    const isSelf = member.user.id === currentUserId; // Corrected variable name
+                    const isSelf = member.user.id === currentUserId;
 
                     return React.createElement("div", { key: member.user.id },
-                       React.createElement(Avatar, { user: member.user }),
-                       isSelf && React.createElement(CreateClanButton)
-            );
-});
+                        React.createElement(Avatar, { user: member.user }),
+                        isSelf && React.createElement(CreateClanButton),
+                        isSelf && React.createElement(AddFriendButton) // Add the Add Friend button
+                    );
+                });
             });
         }
     }
