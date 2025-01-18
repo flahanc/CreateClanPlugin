@@ -74,21 +74,21 @@ module.exports = !global.ZeresPluginLibrary ? class {
         }
 
         patch() {
-            const MemberList = WebpackModules.getByProps("getMember");
+            const MemberList = WebpackModules.getByProps("getMembers");
+            const Avatar = WebpackModules.getByProps("Avatar");
 
-            Patcher.after(MemberList, "getMember", (_, [guildId, userId], ret) => {
-                // Получаем текущего пользователя
-                const currentUser Id = UserStore.getCurrentUser ().id;
+            Patcher.after(MemberList, "getMembers", (_, __, ret) => {
+                const members = ret || [];
+                const currentUserId = UserStore.getCurrentUser ().id; // Corrected variable name
 
-                // Проверяем, что кликнули на себя
-                if (userId === currentUser Id) {
-                    // Добавляем кнопку "Создать клан"
-                    return [
-                        ret,
-                        React.createElement(CreateClanButton)
-                    ];
-                }
-                return ret;
+                return members.map(member => {
+                    const isSelf = member.user.id === currentUserId; // Corrected variable name
+
+                    return React.createElement("div", { key: member.user.id },
+                       React.createElement(Avatar, { user: member.user }),
+                       isSelf && React.createElement(CreateClanButton)
+            );
+});
             });
         }
     }
