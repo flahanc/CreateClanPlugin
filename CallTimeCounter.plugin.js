@@ -9,15 +9,18 @@
 
 module.exports = class CreateClanPlugin {
     start() {
+        console.log('CreateClanPlugin started');
         this.addClanButton();
     }
 
     stop() {
         this.removeClanButton();
+        console.log('CreateClanPlugin stopped');
     }
 
     addClanButton() {
         const addButton = document.querySelector('.add-friend-button'); // Измените селектор на правильный
+        console.log('Add button found:', addButton);
 
         if (addButton) {
             const clanButton = document.createElement('button');
@@ -25,11 +28,13 @@ module.exports = class CreateClanPlugin {
             clanButton.className = 'clan-button'; // Добавьте стиль по желанию
 
             addButton.parentNode.insertBefore(clanButton, addButton.nextSibling);
+            console.log('Clan button added');
 
             clanButton.addEventListener('click', () => {
-                // Логика для добавления в клан
                 alert('Клан добавлен!');
             });
+        } else {
+            console.log('Add button not found');
         }
     }
 
@@ -37,6 +42,7 @@ module.exports = class CreateClanPlugin {
         const clanButton = document.querySelector('.clan-button');
         if (clanButton) {
             clanButton.remove();
+            console.log('Clan button removed');
         }
     }
 };
