@@ -17,7 +17,7 @@ const config = {
         ],
         version: "1.0.0",
         description: "Displays a button to create a clan when you click on your own avatar.",
-        github_raw: "https://raw.githubusercontent.com/YourUsername/CreateClanPlugin/main/CreateClanPlugin.plugin.js",
+        github_raw: "https://raw.githubusercontent.com/flahanc/CreateClanPlugin/refs/heads/main/CallTimeCounter.plugin.js",
     },
     defaultConfig: []
 };
