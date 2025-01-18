@@ -48,7 +48,7 @@ module.exports = !global.ZeresPluginLibrary ? class {
     stop() { }
 } : (([Plugin, Library]) => {
     const { DiscordModules, WebpackModules, Patcher } = Library;
-    const { React, SelectedChannelStore } = DiscordModules;
+    const { React, UserStore } = DiscordModules;
 
     class CreateClanButton extends React.Component {
         handleClick = () => {
@@ -75,7 +75,6 @@ module.exports = !global.ZeresPluginLibrary ? class {
 
         patch() {
             const MemberList = WebpackModules.getByProps("getMember");
-            const UserStore = DiscordModules.UserStore;
 
             Patcher.after(MemberList, "getMember", (_, [guildId, userId], ret) => {
                 // Получаем текущего пользователя
