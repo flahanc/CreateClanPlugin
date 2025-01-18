@@ -3,7 +3,7 @@
  * @source https://github.com/YourUsername/CreateClanPlugin 
  * @description Displays a button to create a clan when you click on your own avatar.
  * @updateUrl https://github.com/flahanc/CreateClanPlugin/blob/main/CallTimeCounter.plugin.js
- * @website https://github.com/YourUsername/CreateClanPlugin
+ * @website https://github.com/flahanc/CreateClanPlugin
  * @version 1.0.0
  */
 
