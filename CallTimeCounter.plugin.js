@@ -19,7 +19,7 @@ module.exports = class ClanMenuPlugin {
     }
 
     addClanMenu() {
-        const menuContainer = document.querySelector('.menu-container'); // Измените селектор на правильный
+        const menuContainer = document.querySelector('.sidebarList_c48ade'); // Измените селектор на правильный
         console.log('Menu container found:', menuContainer);
 
         if (menuContainer) {
@@ -31,6 +31,8 @@ module.exports = class ClanMenuPlugin {
             console.log('Clan menu added');
 
             clanMenu.addEventListener('click', () => {
+                // Добавьте функциональность для кнопки "Кланы"
+                // Например, можно открыть новую вкладку или показать модальное окно
                 alert('Кланы');
             });
         } else {
