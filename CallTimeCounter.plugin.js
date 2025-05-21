@@ -7,42 +7,42 @@
  * @version 1.0.0
  */
 
-module.exports = class CreateClanPlugin {
+module.exports = class ClanMenuPlugin {
     start() {
-        console.log('CreateClanPlugin started');
-        this.addClanButton();
+        console.log('ClanMenuPlugin started');
+        this.addClanMenu();
     }
 
     stop() {
-        this.removeClanButton();
-        console.log('CreateClanPlugin stopped');
+        this.removeClanMenu();
+        console.log('ClanMenuPlugin stopped');
     }
 
-    addClanButton() {
-        const addButton = document.querySelector('.add-friend-button'); // Измените селектор на правильный
-        console.log('Add button found:', addButton);
+    addClanMenu() {
+        const menuContainer = document.querySelector('.menu-container'); // Измените селектор на правильный
+        console.log('Menu container found:', menuContainer);
 
-        if (addButton) {
-            const clanButton = document.createElement('button');
-            clanButton.innerText = 'Добавить в клан';
-            clanButton.className = 'clan-button'; // Добавьте стиль по желанию
+        if (menuContainer) {
+            const clanMenu = document.createElement('div');
+            clanMenu.innerHTML = 'Кланы';
+            clanMenu.className = 'clan-menu'; // Добавьте стиль по желанию
 
-            addButton.parentNode.insertBefore(clanButton, addButton.nextSibling);
-            console.log('Clan button added');
+            menuContainer.appendChild(clanMenu);
+            console.log('Clan menu added');
 
-            clanButton.addEventListener('click', () => {
-                alert('Клан добавлен!');
+            clanMenu.addEventListener('click', () => {
+                alert('Кланы');
             });
         } else {
-            console.log('Add button not found');
+            console.log('Menu container not found');
         }
     }
 
-    removeClanButton() {
-        const clanButton = document.querySelector('.clan-button');
-        if (clanButton) {
-            clanButton.remove();
-            console.log('Clan button removed');
+    removeClanMenu() {
+        const clanMenu = document.querySelector('.clan-menu');
+        if (clanMenu) {
+            clanMenu.remove();
+            console.log('Clan menu removed');
         }
     }
 };
