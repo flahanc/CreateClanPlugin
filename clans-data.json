@@ -1,0 +1,11 @@
+{
+  "example_clan": {
+    "name": "example_clan",
+    "description": "Пример клана для демонстрации",
+    "leader": "123456789012345678",
+    "members": ["123456789012345678"],
+    "createdAt": "2024-01-01T12:00:00.000Z",
+    "level": 1,
+    "experience": 0
+  }
+} 
